@@ -1,0 +1,39 @@
+# Site settings
+title: 꿈꾸는 개발자의 로그
+description: "Eat. Sleep. Android. 🤘"
+url: "https://kmshack.github.io/blog"
+author:
+  name: "Minsoo, Kim"
+  email: "kmshack@naver.com"
+  url: "https://kmshack.github.io/blog"
+
+# Build settings
+baseurl: /blog # Change this to your relative path (ex: /blog/), or leave just a /
+markdown: kramdown
+source: .
+destination: ./_site
+permalink: /:title
+paginate: 8
+paginate_path: /page:num/
+
+# Default values
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Plugins
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Custom variables
+version: "1.0.0"
+
+# Options
+custom_header: false
+custom_nav_footer: false
+reverse: false
