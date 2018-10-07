@@ -1,9 +1,9 @@
 ---
 title: 안드로이드 RecyclerView 성능 개선팁
-description: RecyclerView는 제한된 화면에서 큰 데이터 세트를 제공하기 위한 유연한 View입니다. RecyclerView는 안드로이드 앱 개발에 있어서 가장 중요한 위젯 중 하나인 ListView를 좀 더 발전시킨 버전입니다. 뉴스 피드나 연락처 목록을 구현 시 사용자가 빠르게 스크롤할 때 성능 문제 또는 불필요한 지연을 방지하기 위해 ListView를 사용했습니다. RecyclerView는 ListView의 성능과 지연을 100% 방지 못하는 문제점을 해결한 버전입니다.
-header: 안드로이드 RecyclerView 성능 개선팁
-duration: 5 minute read
-tags: [안드로이드]
+categories: 안드로이드
+layout: post
+author: kmshack
+
 ---
 
 RecyclerView는 제한된 화면에서 큰 데이터 세트를 제공하기 위한 유연한 View입니다. RecyclerView는 안드로이드 앱 개발에 있어서 가장 중요한 위젯 중 하나인 ListView를 좀 더 발전시킨 버전입니다. 뉴스 피드나 연락처 목록을 구현 시 사용자가 빠르게 스크롤할 때 성능 문제 또는 불필요한 지연을 방지하기 위해 ListView를 사용했습니다. RecyclerView는 ListView의 성능과 지연을 100% 방지 못하는 문제점을 해결한 버전입니다.  

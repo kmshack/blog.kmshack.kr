@@ -1,9 +1,8 @@
 ---
 title: ConstraintLayout으로 아름다운 애니메이션하기
-description: ConstraintLayout은 날이 갈 수록 인기를 더해가고 있습니다. 수평적인 뷰 계층 구조와 성능을 향상시키고, 임의의 경계 규칙을 지원합니다. 이전 레이아웃의 단점을 모두해결 할 것입니다. ConstraintLayout의 이점 중 하나는 매우 적은 코드로 멋진 애니메이션을 수행 할 수 있습니다. 이는 대부분의 개발자들이 알지못하며, 공식 문서에도 아무것도 언급되어 있지 않습니다.
-header: ConstraintLayout으로 아름다운 애니메이션하기
-duration: 10 minute read
-tags: [안드로이드]
+categories: 안드로이드
+layout: post
+author: kmshack
 ---
 
 ConstraintLayout은 날이 갈 수록 인기를 더해가고 있습니다. 수평적인 뷰 계층 구조와 성능을 향상시키고, 임의의 경계 규칙을 지원합니다. 이전 레이아웃의 단점을 모두해결 할 것입니다. ConstraintLayout의 이점 중 하나는 매우 적은 코드로 멋진 애니메이션을 수행 할 수 있습니다. 이는 대부분의 개발자들이 알지못하며, 공식 문서에도 아무것도 언급되어 있지 않습니다.

@@ -1,15 +1,14 @@
 ---
 title: Support Library 28.0.0 alpha1에 추가된 BottomAppBar
-description: 지난 주 Google은 Android P 프리뷰를 발표하면서 디자인 서포트 라이브러리도 새로운 알파버전을 공개하였습니다.
-header: Support Library 28.0.0 alpha1에 추가된 BottomAppBar
-duration: 5 minute read
-tags: [안드로이드]
+categories: 안드로이드
+layout: post
+author: kmshack
 ---
 
 지난 주 Google은 Android P 프리뷰를 발표하면서 디자인 서포트 라이브러리도 새로운 알파버전을 공개하였습니다. 
 - [com.android.support:design:28.0.0-alpha1](https://developer.android.com/topic/libraries/support-library/revisions.html#28-0-0-alpha1)  
 
-\\
+
 이 새로운 버전의 라이브러리에는 MaterialButton, MaterialCardView, Chips 및 BottomAppBar에 대한 레이아웃이 포함되어있습니다. 툴바를 확장한 BottomAppBar는 큰기기의 화면을때 사용자가 엄지손가락으로 버튼에 접근하지 못하는것에 대한 절충안으로 자용자에게 편의성을 제공하기위해 3가지의 방법을 지원합니다.
 
 FloatingActionButton의 app:fabCradleVerticalOffset 속성을 이용하면 반원을 배치 시킬 수 있습니다. app:fabAlignmentMode 속성을 이용하여 CENTER 또는 END로 위치를 변경 할 수 있습니다. 런타임시 이 두개의 속성을 변경하면 멋진 애니메이션으로 위치를 변경해줍니다.

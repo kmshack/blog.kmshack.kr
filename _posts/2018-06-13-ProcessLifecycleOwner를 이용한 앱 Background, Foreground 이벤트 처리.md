@@ -1,9 +1,8 @@
 ---
-title: ProcessLifecycleOwner를 이용한 앱 Background, Foreground 이벤트 처리
-description: 안드로이드 앱을 개발을 하다보면 앱이 Background, Foreground 상태에 대한 이벤트를 탐지를 필요로 합니다. 일반적으로 ActivityManager의 Activity의 갯수와 Lifecycle에 따라 이벤트 탐지를 합니다. 모든 Activity의 Lifecycle을 관리한다는 것은 번거로운 일입니다. 하지만 Android Architecture Components를 이미 사용한다면 간단히 몇줄 만에 해당 이벤트를 탐지 할 수 있습니다.
-header: ProcessLifecycleOwner를 이용한 앱 Background, Foreground 이벤트 처리
-duration: 5 minute read
-tags: [안드로이드]
+title: ProcessLifecycleOwner를 이용한 앱 B/F이벤트 처리
+categories: [안드로이드, 아키텍쳐]
+layout: post
+author: kmshack
 ---
 
 안드로이드 앱을 개발을 하다보면 앱이 Background, Foreground 상태에 대한 이벤트를 탐지를 필요로 합니다. 일반적으로 ActivityManager의 Activity의 갯수와 Lifecycle에 따라 이벤트 탐지를 합니다. 모든 Activity의 Lifecycle을 관리한다는 것은 번거로운 일입니다. 하지만 Android Architecture Components를 이미 사용한다면 간단히 몇줄 만에 해당 이벤트를 탐지 할 수 있습니다.

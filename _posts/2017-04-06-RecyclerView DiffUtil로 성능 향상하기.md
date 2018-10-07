@@ -1,9 +1,8 @@
 ---
 title: RecyclerView DiffUtil로 성능 향상하기
-description: 우리는 리스트를 매일 사용합니다. 사용자가 목록을 스크롤 할때 데이터를 업데이트 해야합니다. 이를 위해 서버에서 데이터를 가져와서 아이템을 업데이트 합니다. 이런 과정에서 지연이 길어지면 UX에 영향을 미치기 때문에 가능한 적은 리소스와 함께 빠른 작업이 이루어져야 합니다. 목록의 내용이 변경되면 notifyDataSetChanged()를 호출하여 아이템을 업데이트하지만 비용이 많이듭니다.
-header: RecyclerView DiffUtil로 성능 향상하기
-duration: 15 minute read
-tags: [안드로이드]
+categories: 안드로이드
+layout: post
+author: kmshack
 ---
 
 이제 notifyDataSetChanged()는 더 이상 쓰지마세요!  

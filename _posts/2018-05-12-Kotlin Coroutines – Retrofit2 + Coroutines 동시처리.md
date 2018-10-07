@@ -1,9 +1,8 @@
 ---
 title: Kotlin Coroutines – Retrofit2 + Coroutines 동시처리
-description: Android의 스레딩 모델은 UI 스레드라고 불리는 싱글 스레드가 사용자의 인터페이스 렌더링, 이벤트 캡쳐 및 기타 여러 측면을 담당하는데 이는 모든 UI 프레임워크와 동일합니다. 네트워크 요청, DB 쿼리, 많은 연산과 같은 긴 작업을 수행하면 UI가 멈추어 ANR 오류가 발생합니다.
-header: Kotlin Coroutines – Retrofit2 + Coroutines 동시처리
-duration: 15 minute read
-tags: [안드로이드, 코틀린]
+categories: [안드로이드, 코틀린]
+layout: post
+author: kmshack
 ---
 
 Android의 스레딩 모델은 UI 스레드라고 불리는 싱글 스레드가 사용자의 인터페이스 렌더링, 이벤트 캡쳐 및 기타 여러 측면을 담당하는데 이는 모든 UI 프레임워크와 동일합니다. 네트워크 요청, DB 쿼리, 많은 연산과 같은 긴 작업을 수행하면 UI가 멈추어 ANR 오류가 발생합니다.

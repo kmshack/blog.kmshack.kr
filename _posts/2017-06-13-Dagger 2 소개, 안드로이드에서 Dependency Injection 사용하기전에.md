@@ -1,9 +1,8 @@
 ---
 title: Dagger 2 소개, 안드로이드에서 Dependency Injection 사용하기전에
-description: 의존성 주입은 Inversion of Control 개념을 바탕으로합니다. 클래스가 외부로부터 의존성을 가져야합니다. 간단히 말해 클래스는 다른 클래스를 인스턴스화해야하지만 구성 클래스에서 인스턴스를 가져와야합니다.
-header: Dagger 2 소개, 안드로이드에서 Dependency Injection 사용하기전에
-duration: 15 minute read
-tags: [안드로이드]
+categories: [안드로이드, 아키텍쳐]
+layout: post
+author: kmshack
 ---
 
 Android에서 Dagger2 사용법을 이해하려면 왜 필요한지를 먼저 알아야 합니다. 중요한 질문은 다음과 같습니다.
