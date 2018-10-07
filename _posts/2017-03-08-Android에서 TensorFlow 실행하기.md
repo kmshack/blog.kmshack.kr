@@ -11,7 +11,8 @@ Google은 기계 학습을 구현하기 위해 Android에서 사용할 수있는
 
 이 글은 이미 기계 학습에 익숙하고 기계 학습을위한 모델 구축 방법을 알고있는 사람을 위해 작성된 글입니다. (예제에서는 사전 훈련 된 모델을 사용합니다). 기계 학습을 하기위한 벙법은 이미 많이 널려있으니 참고하시길 바랍니다.  
 
-### Android용 TensorFlow 빌드하기
+
+## Android용 TensorFlow 빌드하기  
 
 **몇가지 알아두어야할 사항**
 
@@ -93,20 +94,21 @@ bazel-bin/tensorflow/contrib/android/libandroid_tensorflow_inference_java.jar
 그러나 미리 훈련 된 모델과 레이블 파일이 필요합니다. 여기에서는 주어진 이미지에서 객체 감지를 수행하는 Google의 사전 훈련 된 모델을 사용합니다. ([모델 다운로드](https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip))  
 다운받은 zip파일의 압축을 풀면 imagenet_comp_graph_label_strings.txt (객체의 레이블) 및 tensorflow_inception_graph.pb (사전 학습된 모델)가 생성됩니다.  
 
-1) Android Studio에서 Android 샘플 프로젝트를 만듭니다.  
+
+**1) Android Studio에서 Android 샘플 프로젝트를 만듭니다.**  
 imagenet_comp_graph_label_strings.txt 및 tensorflow_inception_graph.pb를 assets 폴더에 넣습니다.
 libandroid_tensorflow_inference_java.jar를 libs 폴더에 넣고 마우스 오른쪽 버튼을 클릭하여 라이브러리로 추가하십시오.  
 
-2) 위에서 빌드한 jar파일과 so파일을 추가 합니다.  
+**2) 위에서 빌드한 jar파일과 so파일을 추가 합니다.**  
 compile files('libs/libandroid_tensorflow_inference_java.jar’)
 기본 디렉토리에 jniLibs 폴더를 만들고 libtensorflow_inference.so를 jniLibs/armeabi-v7a/ 폴더에 넣습니다.  
 
-3) 이제 TensorFlow Java API를 호출 할 수 있습니다.  
+**3) 이제 TensorFlow Java API를 호출 할 수 있습니다.**  
 TensorFlow Java API는 TensorFlowInferenceface 클래스를 통해 필요한 모든 메소드를 제공합니다. TensorFlow Java API를 호출하여 모델경로를 지정하고, 예측을 얻기위해 이미지를 입력해보세요!  
 
 
-아래 주소를 통해 설명된 완벽한 예제 소스를 볼 수 있습니다.
-[https://github.com/MindorksOpenSource/AndroidTensorFlowMachineLearningExample](https://github.com/MindorksOpenSource/AndroidTensorFlowMachineLearningExample)  
+아래 주소를 통해 설명된 완벽한 예제 소스를 볼 수 있습니다.  
+[https://github.com/MindorksOpenSource/AndroidTensorFlowMachineLearningExample](https://github.com/MindorksOpenSource/AndroidTensorFlowMachineLearningExample)    
 
-이와 별개로 Caffe를 안드로이드에서 작동하는 방법도 있습니다.
+이와 별개로 Caffe를 안드로이드에서 작동하는 방법도 있습니다.  
 [https://github.com/kmshack/TrafficLightsDetector-Android](https://github.com/kmshack/TrafficLightsDetector-Android)
