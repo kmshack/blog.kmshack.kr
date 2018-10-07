@@ -7,12 +7,12 @@ comments: true
 
 ConstraintLayout은 날이 갈 수록 인기를 더해가고 있습니다. 수평적인 뷰 계층 구조와 성능을 향상시키고, 임의의 경계 규칙을 지원합니다. 이전 레이아웃의 단점을 모두해결 할 것입니다. ConstraintLayout의 이점 중 하나는 매우 적은 코드로 멋진 애니메이션을 수행 할 수 있습니다. 이는 대부분의 개발자들이 알지못하며, 공식 문서에도 아무것도 언급되어 있지 않습니다.
 
-#### 방법
+## 방법
 ConstraintLayout의 기본 사항을 알고 있다고 가정합니다 (예: `app:layout_constraintLeft_toLeftOf` 및 다른 속성). 대부분의 문서또는 사이트에서는 새로 개선 된 Android Studio 레이아웃 디자인 패널을 사용하여 다양한 Constraint를 드래그/드롭/시각화 하는 방법만 소개되어 있습니다. 애니메이션의 목적을 위해서는 Constraint를 정확하게 이해하고 있어야만 조작이 가능합니다.  
 
 가장 간단한 형식인 TransitionManager(API 19 이상 또는 서포트 라이브러리에서 사용가능)를 통해 두 가지 Constraint 집합간에 애니메이션을 적용 할 수 있습니다. 긴 설명 보다 간단한 예제를 살펴 보겠습니다.
 
-#### 예제
+## 예제
 Activity 실행시 초기화되는 XML 레이아웃부터 살펴 보겠습니다.
 
 ```xml
@@ -115,7 +115,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 대신이 애니메이션에 ConstraintLayout을 사용하는 샘플 앱을 만들었습니다. 이 구현은 훨씬 간단합니다. 변경되어야 할 속성만 바꾼다음 대체 XML 레이아웃 파일을 지정하면 애니메이션 프레임워크가 모든 것을 애니메이션으로 변환합니다. UI에서 이 애니메이션을 처리하는 코드는 ~250라인에서 ~30라인으로 간단해졌습니다.
 
 
-#### 추가 팁!
+## 추가 팁!
 
 ConstraintLayout 애니메이션을 시작하는 데 사용하는 코드를 기억하십니까?
 
@@ -133,7 +133,7 @@ TransitionManager.beginDelayedTransition(
 ```
 
 
-#### 사소한주의 사항
+## 사소한주의 사항
 ConstraintLayout 애니메이션으로 사용해본 후, 나는 애니메이션을 구현할 때 고려해야 할 몇 가지주의 사항을 발견했습니다.
 
 
@@ -143,7 +143,7 @@ ConstraintLayout 애니메이션으로 사용해본 후, 나는 애니메이션�
 3. constraint-layout:1.0.2에서 ConstraintLayout 속성을 동적으로 변경하면 업데이트 된 속성을 고려하지 않고 애니메이션됩니다.(예: `translationY`). 즉, 애니메이션을 실행하면 변경전의 속성의 값으로 되돌아 간뒤 새로운 값으로 애니메이션이 적용됩니다.  
 
 
-### 마치며
+## 마치며
 
 ConstraintLayout을 사용하는 페이지에서 애니메이션을 구현할 함으로 Transition 프레임 워크 보다 많은 기본 레이아웃 변경 애니메이션을 수행 할 수 있습니다. 이를 통해 Activity/Fragment에서 UI/애니메이션 로직을 압축하고 XML로 통합 할 수 있습니다. 또한 더 읽기 쉬운 애니메이션 구조를 만듭니다.  
 

@@ -10,7 +10,7 @@ RecyclerView는 제한된 화면에서 큰 데이터 세트를 제공하기 위�
 이 글은 RecyclerView 사용방법에 관한 글이 아닙니다. RecyclerView를 사용하면서 유용한 정보와 중요한 규칙, 절대 하지 말아야 할 것을 하나씩 살펴보겠습니다.  
 
 
-### 피할 수 있는 문제
+## 피할 수 있는 문제
 
 **1) 제대로된 View 재사용**  
 `ViewHolder` 내부에서 View 애니메이션을 절대 사용하면 안됩니다. (ex. `itemView.animate()` 호출)
@@ -53,7 +53,7 @@ class ColorViewHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
 
 
-### 성능 팁!
+## 성능 팁!
 
 부드러운 스크롤을 원한다면 아래의 간단한 규칙을 지키면 됩니다.  
 
