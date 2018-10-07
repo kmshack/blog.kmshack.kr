@@ -4,12 +4,13 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
 
-### More Information
+I’m working as an Android developer in Kakao.I love Android developers to develop and better. There is a lot of interest in UI development. 
+I like UI/UX development, and sometimes I like to post on Blog.  
 
-A place to include any other types of information that you'd like to include about yourself.
 
-### Contact me
+  
+#### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+- [kmshack@naver.com](mailto:kmshack@naver.com)
+- [https://kmshack.github.io](https://kmshack.github.io)
