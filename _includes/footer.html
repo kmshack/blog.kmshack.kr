@@ -1,5 +1,5 @@
-<footer>
-    
-    <span>@2018 - {{ site.title }}</span>
+{% include svg-icons.html %}
 
-</footer>
+{% if site.footer-text %}
+<p>{{ site.footer-text }}</p>
+{% endif %}
