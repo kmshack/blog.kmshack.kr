@@ -357,7 +357,7 @@ img {
   cursor: pointer;
   font-family: $base-font;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 30px;
   letter-spacing: 1px;
 }
 
@@ -367,14 +367,15 @@ img {
   cursor: pointer;
   font-family: $base-font;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 30px;
   letter-spacing: 1px;
 }
 
 .site-description {
   font-family: $base-font;
   margin: -3px 0 0 0;
-  color: $gray;
+  color: #888888;
+  font-weight: 300;
   font-size: 13px;
   @include mobile {
     margin: 3px 0;
