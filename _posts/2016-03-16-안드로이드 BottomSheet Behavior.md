@@ -14,8 +14,10 @@ BottomSheet는 이미 구글 앱을 보면 많이 적용되어 있다. 구글 �
 ### 어떻게 사용하는가?
 BottomSheet는 별도의 위젯으로 존재 하지는 않는다. CoordinatorLayout을 이용하여 자식뷰들의 행동을 구현한것으로 속성변경만으로 간단하게 BottomSheet를 사용 할 수 있다.  
 
-– `android.support.design.widget.AppBarLayout$ScrollingViewBehavior` (@string/appbar_scrolling_view_behavior)
-– `android.support.design.widget.BottomSheetBehavior` (@string/bottom_sheet_behavior)
+– `android.support.design.widget.AppBarLayout$ScrollingViewBehavior`  
+   (@string/appbar_scrolling_view_behavior)  
+– `android.support.design.widget.BottomSheetBehavior`  
+   (@string/bottom_sheet_behavior)  
 
 CoordinatorLayout을 사용해본 적이 있다면 레이아웃에 `layout_behavior`속성을 사용해본 적이 있을 것이다. 속성의 값으로 `appbar_scrolling_view_behavior`를 사용한적이 있을 것이다. 이는 툴바와 스크롤 되는 뷰간의 상호 작용을 위해 구현된 behavior이다. BottomSheet또한 CoordinatorLayout의 하나의 behavior이며, `bottom_sheet_behavior`를 사용하면 된다. `bottom_sheet_behavior`는 스트링 이름이며 값은 클래스명으로 지정되어 있으며 해당 클래스가 로드되어 수행되는 구조이다.  
 
