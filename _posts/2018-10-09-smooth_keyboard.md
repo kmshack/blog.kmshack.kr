@@ -12,11 +12,11 @@ comments: true
 
 차이점을 명확히 알아보기 위해 Google Keep과 Dank 앱을 비교 해보겠습니다.  
 
-![](/images/2018-10-09-smooth_keyboard/1.gif){:height="40%" width="40%"}
-Google Keep  
+|:---------------:|
+|<br> ![](/images/2018-10-09-smooth_keyboard/1.gif){:.center-image} Google Keep|
 
-![](/images/2018-10-09-smooth_keyboard/2.gif){:height="40%" width="40%"}
-Dank  
+|:---------------:|
+|<br> ![](/images/2018-10-09-smooth_keyboard/2.gif){:.center-image} Dank|
 
 <br>
 
@@ -38,7 +38,9 @@ Activity를 구성하는 View Tree는 일반적으로 다음과 같습니다.
 ---- Activity content
 ```
 
-![](/images/2018-10-09-smooth_keyboard/3.gif){:height="40%" width="40%"}  
+|:---------------:|
+|<br> ![](/images/2018-10-09-smooth_keyboard/3.gif){:.center-image} <br>|
+
 
 리사이즈 되는 부분을 제어하기 위해 콘텐츠 레이아웃의 크기가 변경되는 것을 감지하는 유틸 클래스를 만들었습니다. View의 크기가 변경되면 컨텐츠의 전체 높이에서 변경된 높이만큼 변경되도록 애니메이션처리 합니다.  
 
@@ -59,8 +61,8 @@ decorView.viewTreeObserver.addOnPreDrawListener {
 }
 ```
 
-![](/images/2018-10-09-smooth_keyboard/4.gif){:height="40%" width="40%"}
-
+|:---------------:|
+|<br> ![](/images/2018-10-09-smooth_keyboard/4.gif){:.center-image} <br>|
 
 
 ```java
