@@ -13,6 +13,7 @@ comments: true
 
 기존의 BitmapDrawble을 사용함으로 DPI별로 각각 다른 이미지 리소스를 준비 했다면 VectorDrawable을 활용 한다면 DPI별로 각각 다른 이미지를 준비 할 필요가 전혀 없어진다. 이미지 관리 갯수도 작아질 뿐만아니라 용량도 많이 줄것이다.  
 
+<br>
 ```xml
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
@@ -42,7 +43,7 @@ c0-13.45-10.904-24.354-24.354-24.354l0,0c-13.451,0-24.354,10.904-24.354,24.354V2
 <br>
 
 Vector방식에서 가장 흔히 쓰이는 SVG 형식으로 아이콘을 제작하면 된다. 하지만 안드로이드에서는 SVG형식의 확장자를 바로 사용 할 수 없으며 VectorDrawable로 변환 해야한다. 최근 안드로이드 스튜디오에서는 SVG를 Import하면 자동으로 VectorDrawable 변경해주는 기능이 추가되어 쉽게 사용 할 수 있다. 위의 안드로이드 아이콘은 Path를 통해 SVG로 제작된 아이콘이다. 안드로이드에서 사용하기위해 아래와 같이 만들 수 있다.  
-
+<br>
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"

@@ -61,12 +61,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 </android.support.design.widget.CoordinatorLayout>
 ```
+<br>
 
 이해를 돕기위해 안드로이드 서포트 라이브러리에서 제공해주는 Behavior를 한번 보겠습니다. NestedScrollView에 `layout_behavior`에 `AppBarLayout$ScrollingViewBehavior`가 정의가 되어있습니다. [NestedScrollView](https://developer.android.com/reference/android/support/v4/widget/NestedScrollView.html)의 반응에 따라 AppBarLayout이 반응됩니다.  
 
 CoordinatorLayout는 NestedScrollView가 스크롤시 layout_behavior에 정의된 레이아웃으로 스크롤 정보를 전달 하는 역할을 합니다. 그럼 AppBarLayout의 ScrollingViewBehavior가 정보를 받아서 AppBarLayout 자신을 변형하도록 하는 구조입니다.  
 
 CoordinatorLayout이 스크롤되는 것은 Behavior에 구현된 NestedScrollingParent를 통해 전달 됩니다. 즉, CoordinatorLayout는 [NestedScrollingParent](https://developer.android.com/reference/android/support/v4/view/NestedScrollingParent.html)가 구현되어 있으며 스크롤 되는 View들은 [NestedScrollingChild](https://developer.android.com/reference/android/support/v4/view/NestedScrollingChild.html)가 구현되어 있어야 Behavior가 전달 됩니다. 그렇기 때문에 기존의 ScrollView나 ListView는 NestedScrollingChild가 구현되어 있지 않아 Behavior를 통해 스크롤 정보전달이 되지 않습니다.  
+
+<br>
 
 이렇게 CoordinatorLayout의 역할과 Behavior의 관계를 알고 있다면 Behavior를 커스텀해서 구현하는데 전혀 문제 없을 것입니다.
 

@@ -7,11 +7,11 @@ comments: true
 AppCompat V23.2에서 머트리얼 디자인 가이드 중 BottomSheet를 구현한  위젯이 추가 되었다. 기존의 CoordinatorLayout에 하나의 행동 방법으로 BottomSheet가 구현되었다. 또한 독립적으로 사용하기 위해 BottomSheetFragmentDialog를 이용하여 다이얼로그형태로도 사용가능하다. CoordinatorLayout의 Bottom Sheet Behavior를 어떻게 사용하는지 알아보자.  
 
 <br>
-### 어디에 사용되는가?
+## 어디에 사용되는가?
 BottomSheet는 이미 구글 앱을 보면 많이 적용되어 있다. 구글 맵, 플러그, 뮤직등 다양한 디자인과 형태로 사용중이다. 이는 컨텐츠를 화면 전환 없이 더 많이 빠르게 보여주는데 사용된다. 또한 특정 액션을 했을때 사용할 여러가지 액션들을 선택할때도 사용된다.  
 
 <br>
-### 어떻게 사용하는가?
+## 어떻게 사용하는가?
 BottomSheet는 별도의 위젯으로 존재 하지는 않는다. CoordinatorLayout을 이용하여 자식뷰들의 행동을 구현한것으로 속성변경만으로 간단하게 BottomSheet를 사용 할 수 있다.  
 
 – `android.support.design.widget.AppBarLayout$ScrollingViewBehavior`  
@@ -90,7 +90,7 @@ BottomSheet높이는 자식뷰의 크기에 따라 변하게 되며 기본적으
 
 
 <br>
-### Listener
+## Listener
 BottomSheet의 상태가 확장된 상태인지 완전히 숨겨져있는지등에 대한 상태를 알 수 있도록 Listener를 지원한다.  
 
 ```java

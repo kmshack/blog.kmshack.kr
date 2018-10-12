@@ -180,16 +180,20 @@ MotionLayout은 이런 모든 문제를 해결 할 수 있습니다. 이를 위�
 
 <br>
 ### OnSwipe  
-`OnSwipe` 핸들러는 사용자의 액션이 일치되는 경우 전환을 시작합니다. 이때 몇가지 속성이 있습니다.  
+`OnSwipe` 핸들러는 사용자의 액션이 일치되는 경우 전환을 시작합니다.  
 
+**주요 속성**  
+- `touchAnchorId` 추적해야 할 대상 (`@+id/button`)
+- `touchAnchorSide` 손가락을 추적해야하는 물체의 측면 (`right/left/top/bottom`)
+- `dragDirection` 추적중인 동작의 방향 (`dragRight/dragLeft/dragUp/dragDown`)  
+
+<br>
 
 |:---------------:|
 |<br> ![](/images/2018-10-12-motionlayout/3.gif){:.center-image} <br>|
-  
+
+
 이제 코드 한줄 없이 사용자의 스와이프 이벤트를 통해 네모박스가 자연스럽게 애니메이션되면서 끝에서 끝으로 이동 합니다.  
-- `touchAnchorId` 추적해야 할 대상 (`@+id/button`)
-- `touchAnchorSide` 손가락을 추적해야하는 물체의 측면 (`right/left/top/bottom`)
-- `dragDirection` 추적중인 동작의 방향 (`dragRight/dragLeft/dragUp/dragDown`)
 
 
 <br>
