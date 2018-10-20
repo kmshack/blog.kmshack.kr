@@ -8,3 +8,4 @@ https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-3-androi
 
 ## kotlin
 https://kotlinexpertise.com/kotlin-coroutines-guide/
+https://www.kotlindevelopment.com/typical-kotlin/
