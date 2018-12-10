@@ -1,6 +1,6 @@
 ---
 title: Kotlin Coroutines 사용 패턴
-tags: 안드로이드, 코틀린, 코르틴
+tags: [안드로이드, 코틀린, 코루틴]
 layout: post
 comments: true
 ---
