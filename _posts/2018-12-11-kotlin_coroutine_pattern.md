@@ -44,14 +44,14 @@ fun loadData() = scope.launch {
 참고: 이 기능은 SupervisorJob으로 코루틴 범위에서 비동기를 명시적으로 실행하는 경우에만 작동합니다. async가 부모 코루틴(1)의 범위에서 시작되었기 때문에 아래 코드는 여전히 크래시가 납니다.  
 
 ```java
-val job = SupervisorJob ()                                
-val 범위 = CoroutineScope (Dispatchers.Default + job)
-재미 loadData () = scope.launch { 
-    try { 
-        async {                                          // (1) 
-            // 예외 throw 가능 
-        } .await () 
-    } catch (e : Exception) {...} 
+val job = SupervisorJob()                               
+val scope = CoroutineScope(Dispatchers.Default + job)
+fun loadData() = scope.launch {
+    try {
+        async {                                         // (1)
+            // may throw Exception 
+        }.await()
+    } catch (e: Exception) { ... }
 }
 ```
 
@@ -221,13 +221,13 @@ suspend fun login(): Result = withContext(Dispatcher.Main) {
 이제 모든 디스패처에서 로그인 기능을 실행할 수 있습니다.
 
 ```java
-launch (Dispatcher. Main ) {// (1) crash 
-    val loginResult = login () 
-    ... 
+launch(Dispatcher.Main) {     // (1) no crash
+    val loginResult = login()
+    ...
 }
-launch (Dispatcher. 기본값 ) {// (2) no crash ether 
-    val loginResult = login () 
-    ... 
+launch(Dispatcher.Default) {  // (2) no crash ether
+    val loginResult = login()
+    ...
 }
 ```
 
