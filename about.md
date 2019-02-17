@@ -5,8 +5,7 @@ permalink: /about/
 ---
 
 
-I’m working as an Android developer in Kakao.I love Android developers to develop and better. There is a lot of interest in UI development. 
-I like UI/UX development, and sometimes I like to post on Blog.  
+I have been working as an Android developer for 10 years. I'm interested in UI/UX. I also run blogs to share development knowledge. I often make fun apps for my hobby.
 
 
   
