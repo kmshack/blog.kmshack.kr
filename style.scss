@@ -60,22 +60,22 @@ h1, h2, h3, h5 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 22px;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-size: 22px;
-}
-
-h3 {
   font-size: 20px;
 }
 
-h4 {
+h3 {
   font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
   color: $base-lighten-color;
 }
 
@@ -372,7 +372,7 @@ img {
   font-family: $base-font;
   font-weight: 500;
   font-size: 28px;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
 }
 
 .site-name-bold {
@@ -382,7 +382,7 @@ img {
   font-family: $base-font;
   font-weight: 600;
   font-size: 28px;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
 }
 
 .site-description {
