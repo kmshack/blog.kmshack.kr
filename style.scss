@@ -57,9 +57,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-weight: 500;
-}
-
-h1 {
   font-size: 22px;
   a {
     color: inherit;
@@ -67,10 +64,12 @@ h1 {
 }
 
 h2 {
+  font-weight: 400;
   font-size: 20px;
 }
 
 h3 {
+  font-weight: 400;
   font-size: 18px;
 }
 
