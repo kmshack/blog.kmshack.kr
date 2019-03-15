@@ -13,7 +13,7 @@ comments: true
 |:---------------:|
 |<br> ![](/images/2016-04-26-ignore_battery_optimizations/android_wear.png){:.center-image}  <br>|
 
-
+<br>
 
 ## 어떻게? 
 안드로이드 API 23에 배터리 최적화를 앱에서 직접제어 할 수 있는 퍼미션이 추가되었습니다.
