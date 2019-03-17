@@ -61,12 +61,11 @@ class LocationWorker(context: Context, workerParams: WorkerParameters)
         val sendDataService = SendDataService.getInstance()
         sendDataService.sendLocation(latitude, longitude)
             .addSuccessCallback {
-                // todo 
+            
             }
             .addFailureCallback {
-                // todo 
+            
             }
-
 
         return Result.success()
     }
@@ -79,24 +78,25 @@ Worker가 생성되고, 주기적으로 실행되는 작업 공간의 큐에 추
 ```java
 fun createConstraints() = Constraints.Builder()
                         .setRequiredNetworkType(NetworkType.UNMETERED)  //와이파이 연결된 경우
-                                                                          // 다른값(NOT_REQUIRED, CONNECTED, NOT_ROAMING, METERED)
+                        // 다른값(NOT_REQUIRED, CONNECTED, NOT_ROAMING, METERED)
                         .setRequiresBatteryNotLow(true)                 // 배터리가 부족하지 않는 경우
                         .setRequiresStorageNotLow(true)                 // 저장소가 부족하지 않는 경우
                         .build()
 
-
-fun createWorkRequest(data: Data) = PeriodicWorkRequestBuilder<LocationWorker>(12, TimeUnit.HOURS)  // 12시간으로 설정
-                .setInputData(data)     // 입력 데이터                                                  
-                .setConstraints(createConstraints())
-                // 작업을 재시도 할경우에 대한 정책
-                .setBackoffCriteria(BackoffPolicy.LINEAR, PeriodicWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
+fun createWorkRequest(data: Data) = PeriodicWorkRequestBuilder<LocationWorker>(12, TimeUnit.HOURS)// 12시간 반복
+                .setInputData(data) // 입력 데이터                                                  
+                .setConstraints(createConstraints()) // 작업을 재시도 할경우에 대한 정책
+                .setBackoffCriteria(BackoffPolicy.LINEAR, 
+                                PeriodicWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
                 .build()
 
 fun startWork() {
     // 입력 데이터를 설정합니다. Bundle와 동일합니다.
     val work = createWorkRequest(Data.EMPTY)
     
-    /* 작업을 큐에 넣을때 동일한 작업인 경우에 대한 정책을 지정할 수 있습니다. ExistingPeriodicWorkPolicy.KEEP은 동일한 작업을 큐에 넣게되며, ExistingPeriodicWorkPolicy.REPLACE인 경우 작업이 대체됩니다. */
+    /* 작업을 큐에 넣을때 동일한 작업인 경우에 대한 정책을 지정할 수 있습니다. 
+    ExistingPeriodicWorkPolicy.KEEP은 동일한 작업을 큐에 넣게되며, 
+    ExistingPeriodicWorkPolicy.REPLACE인 경우 작업이 대체됩니다. */
     WorkManager.getInstance().enqueueUniquePeriodicWork("Smart work", ExistingPeriodicWorkPolicy.KEEP, work)
     
     // 작업의 상태를 LiveData를 통해 관찰하게 됩니다. 
@@ -145,7 +145,8 @@ WorkManager는 앱이 종료되거나 기기가 재시작되어도 실행되며,
 
 <br>
 
-참고: 
+
+참고:  
 [https://medium.com/@RobertLevonyan/android-workmanager-manage-periodic-tasks-c13fa7744ebd](https://medium.com/@RobertLevonyan/android-workmanager-manage-periodic-tasks-c13fa7744ebd)
 [https://developer.android.com/topic/libraries/architecture/workmanager](https://developer.android.com/topic/libraries/architecture/workmanager)
 
