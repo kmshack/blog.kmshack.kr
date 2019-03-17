@@ -1,63 +1,158 @@
 ---
-title: ViewPager2 맛보기
-tags: 안드로이드 뷰페이저
+title: WorkManager로 정기적인 백그라운드 작업 수행하기
+tags: 안드로이드 서비스
 layout: post
 comments: true
 ---
 
-[2011년에 출시된 ViewPager](https://android-developers.googleblog.com/2011/08/horizontal-view-swiping-with-viewpager.html)가 7년여 만에 [ViewPager2](https://developer.android.com/jetpack/androidx/releases/viewpager2#1.0.0-alpha01) 알파버전을 출시 하였습니다. 출시후 많은 개발자들이 ViewPager의 개선을 필요로 하였습니다.
-
-앱에 많이 사용되고있지만 확실히 좋은 위젯은 아닙니다. FragmentPagerAdapter나 FragmentStatePagerAdapter를 사용할때 Fragment없이 ViewPager를 사용하면 안되는지에 대해 적어도 한번 이상은 궁금했었습니다. 
-그리고 RTL지원과 수직페이징 처리등 다양한 기능을 지원하도록 요청하였습니다. 오픈소스를 통한 솔루션은 있으나 공식적인 라이브러리 업데이트는 아직 없습니다. 지금까지 였습니다..  
+Android O 부터 긴 작업의 백그라운드 서비스와 브로드캐스트는 재기능을 하지 않습니다. 따라서 백그라운드 작업을 구현하기위해서는 WokrManager를 선택할 수 밖에 없습니다.  
 
 <br>
 
-이제 모두 지원 합니다.  
-## ViewPager2  
+WokrManager는 Android Jetpack의 일부로 1.0.0버전으로 얼마전 공개되었습니다. Google은 이미 JobScheduler, Firebase JobDispatcher와 같은 백그라운드 작업을 위한 라이브러리를 수차례 공개하였습니다. 또한 Everonet의 Android Job이 있습니다. WorkManager는 이미 공개된 라이브러리보다 많은 장점이 있습니다.
 
-프로젝트는 AndroidX로 구성하고 minSdkVersion 14이상을 지원해야 합니다.
-build.gradle에 아래 라이브러리를 추가합니다.
-```xml
-implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha01'
+* 이전버전과의 호환성(API14이상 모두 지원)
+* GooglePlayService에 대한 의존성이 없음
+* 체인기반의 작업 관리
+* 작업 상태 쿼리가능
+  
+<br>
+### 그럼 이제 프로젝트에 적용해봅시다!  
+  
+항상 그렇듯 build.gradle에 종속성을 추가합니다.  
+
 ```
-
-<br>
-RecyclerView에 익숙하다면 ViewPager2를 구성하는것은 매우 익숙합니다. RecyclerView.Adapter를 상속받아 어댑터를 생성합니다. 물론 ViewHolder도 필요합니다.  
-
-```java
-class AppPagerAdapter(private val apps: Array<String>) : RecyclerView.Adapter<AppViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
-        return AppViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.app_pager_item, parent, false))
+allprojects {
+    repositories {
+        google()
+        jcenter()
     }
-
-    override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-        holder.txtApp.text = apps[position]
-    }
-
-    override fun getItemCount() = apps.size
-}
-
-class AppViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val txtApp: TextView = view.findViewById(R.id.txt_app)
 }
 ```
 
-<br>
-마지막으로 RecyclerView와 마찬가지로 ViewPager2의 Adapter를 설정합니다. 여기서 RecyclerView에서 처럼 LayoutManager는 필요없습니다. ORIENTATION_VERTICAL를 통해 스크롤 하도록 성정가능합니다.  
+```
+dependencies {
+    def work_version = 1.0.0
 
-```java
-ViewPager2.orientation = ViewPager2.RIENTATION_VERTICAL
+    // (Java only)
+    implementation "android.arch.work:work-runtime:$work_version"
+
+    // Kotlin + coroutines
+    implementation "android.arch.work:work-runtime-ktx:$work_version"
+
+}
 ```
 
 <br>
-ViewPager2는 아직 알파버전인 단계로 버그나 문제점은 보여집니다. 하지만 ViewPager의 View 재사용성 문제를 RecyclerView의 ViewHolder패턴을 그대로 사용하면서 해결함과 동시에 RecyclerView에 익숙한 개발자들에게 별도의 학습없이 적용할 수 있게 솔류션을 제공하였습니다. 또한 orientation기능 도입으로 가로 스크롤뿐만 세로스크롤도 지원하게 되었습니다. 또한 RTL도 지원합니다!  
+백그라운드에서 일부 작업을 실행하는 예제를 보도록하겠습니다. 현재 좌표를 하루에 두번씩 서버로 전송하는 예제이며, 몇가지 제약조건이 추가됩니다. 기기가 Wi-Fi에 연결되어 있고 저장 용량이 부족하지 않은 경우에만 작동합니다.
 
-추가 기능외 전 버전의 notifyDataSetChanged()가 실행되지 않는 문제를 해결하였습니다. getItemPosition에서 POSITION_NONE을 강제로 반환하도록 하여 문제를 회피했던 경험 모두 있으실것 같은데 이제 해결되었습니다.  
+
+```java
+class LocationWorker(context: Context, workerParams: WorkerParameters) 
+    : Worker(context, workerParams) {
+    
+    ...
+    
+    override fun doWork(): Result {
+        
+        val latitude = inputData.getDouble(KEY_LATITUDE, 40.1903484)
+        val longitude = inputData.getDouble(KEY_LONGITUDE, 44.5148367)
+        
+        val sendDataService = SendDataService.getInstance()
+        sendDataService.sendLocation(latitude, longitude)
+            .addSuccessCallback {
+                // todo 
+            }
+            .addFailureCallback {
+                // todo 
+            }
+
+
+        return Result.success()
+    }
+}
+```  
+
+<br>
+Worker가 생성되고, 주기적으로 실행되는 작업 공간의 큐에 추가됩니다.  
+
+```
+fun createConstraints() = Constraints.Builder()
+                        .setRequiredNetworkType(NetworkType.UNMETERED)  //와이파이 연결된 경우
+                                                                          // 다른값(NOT_REQUIRED, CONNECTED, NOT_ROAMING, METERED)
+                        .setRequiresBatteryNotLow(true)                 // 배터리가 부족하지 않는 경우
+                        .setRequiresStorageNotLow(true)                 // 저장소가 부족하지 않는 경우
+                        .build()
+
+
+fun createWorkRequest(data: Data) = PeriodicWorkRequestBuilder<LocationWorker>(12, TimeUnit.HOURS)  // 12시간으로 설정
+                .setInputData(data)     // 입력 데이터                                                  
+                .setConstraints(createConstraints())
+                // 작업을 재시도 할경우에 대한 정책
+                .setBackoffCriteria(BackoffPolicy.LINEAR, PeriodicWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
+                .build()
+
+fun startWork() {
+    // 입력 데이터를 설정합니다. Bundle와 동일합니다.
+    val work = createWorkRequest(Data.EMPTY)
+    
+    /* 작업을 큐에 넣을때 동일한 작업인 경우에 대한 정책을 지정할 수 있습니다. ExistingPeriodicWorkPolicy.KEEP은 동일한 작업을 큐에 넣게되며, ExistingPeriodicWorkPolicy.REPLACE인 경우 작업이 대체됩니다. */
+    WorkManager.getInstance().enqueueUniquePeriodicWork("Smart work", ExistingPeriodicWorkPolicy.KEEP, work)
+    
+    // 작업의 상태를 LiveData를 통해 관찰하게 됩니다. 
+    WorkManager.getInstance().getWorkInfoByIdLiveData(work.id)
+        .observe(lifecycleOwner, Observer { workInfo ->
+            if (workInfo != null && workInfo.state == WorkInfo.State.SUCCEEDED) {
+                // 작업 완료
+            }
+        })
+}
+```  
+
+<br>
+앞서 WorkerManager의 장점으로 소개 했던 체인기반의 작업에 대해서도 알아 보겠습니다.   
+
+```
+fun chainWorks(filter1: Work, filter2: Work, compress: Work, upload: Work) {
+  WorkManager.getInstance()
+    // Worker를 동시에 병렬로 실행합니다.
+    .beginWith(listOf(filter1, filter2))
+    // 이전 beginWith의 모든 작업이 끝난 경우 실행됩니다.
+    .then(compress)
+    //compress작업이 완료 된경우 upload가 실행됩니다.
+    .then(upload)
+    //enqueue()를 호출해야 이 모든 작업이 실행됩니다.
+    .enqueue()
+}
+```
 
 <br>
 
-### 알려진 버그 (1.0.0 알파 01기준)  
--ClipToPadding 미지원  
--TabLayout 미지원  
--pageWidth 미지원(강제 가로/세로 100%)  
--currentItem 설정시 이전 페이지 보이는 현상  
+|:---------------:|
+|<br> ![](/images/2019-03-18-work_manager/worker_manager.png){:.center-image} <br>|
+
+
+<br>
+Worker는 우리가 원했던 작업구현 방식입니다. doWork() 메소드에서 필요한 작업을 구현하면 됩니다.  
+
+WorkRequest는 Worker의 arguments(입력된 데이터)와 constraints(네트워크 연결) 작업을 당담합니다.   
+
+WorkManager는 WorkRequest를 큐에 담고 작업을 시작합니다. 이 작업을 스케쥴링 하기위해 Room 데이터베이스에 저장 하는 가장 좋은 방법을 사용합니다. 이 작업 결과는 LiveData를 통해 전송됩니다.  
+
+### 결론
+WorkManager는 앱이 종료되거나 기기가 재시작되어도 실행되며, 비동기 작업을  구현하는 가장간단하면서 효과적인 솔루션입니다. 또한 제약사항을 통해 앱의 소비전력도 줄일 수 있습니다.  
+
+<br>
+
+참고: 
+[https://medium.com/@RobertLevonyan/android-workmanager-manage-periodic-tasks-c13fa7744ebd](https://medium.com/@RobertLevonyan/android-workmanager-manage-periodic-tasks-c13fa7744ebd)
+[https://developer.android.com/topic/libraries/architecture/workmanager](https://developer.android.com/topic/libraries/architecture/workmanager)
+
+
+
+
+
+
+
+
+
