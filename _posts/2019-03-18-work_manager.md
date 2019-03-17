@@ -5,19 +5,19 @@ layout: post
 comments: true
 ---
 
-Android O 부터 긴 작업의 백그라운드 서비스와 브로드캐스트는 재기능을 하지 않습니다. 따라서 백그라운드 작업을 구현하기위해서는 WokrManager를 선택할 수 밖에 없습니다.  
+Android O 부터 긴 작업의 백그라운드 서비스와 브로드캐스트는 재기능을 하지 않습니다. 따라서 백그라운드 작업을 구현하기위해서는 `WorkManager`를 선택할 수 밖에 없습니다.  
 
 <br>
 
-WokrManager는 Android Jetpack의 일부로 1.0.0버전으로 얼마전 공개되었습니다. Google은 이미 JobScheduler, Firebase JobDispatcher와 같은 백그라운드 작업을 위한 라이브러리를 수차례 공개하였습니다. 또한 Everonet의 Android Job이 있습니다. WorkManager는 이미 공개된 라이브러리보다 많은 장점이 있습니다.
+WokrManager는 Android Jetpack의 일부로 1.0.0버전으로 얼마전 공개되었습니다. Google은 이미 `JobScheduler`, `Firebase JobDispatcher`와 같은 백그라운드 작업을 위한 라이브러리를 수차례 공개하였습니다. 또한 Everonet의 `Android Job`이 있습니다. WorkManager는 이미 공개된 라이브러리보다 많은 장점이 있습니다.
 
 * 이전버전과의 호환성(API14이상 모두 지원)
-* GooglePlayService에 대한 의존성이 없음
+* GooglePlay Service에 대한 의존성이 없음
 * 체인기반의 작업 관리
 * 작업 상태 쿼리가능
   
 <br>
-### 그럼 이제 프로젝트에 적용해봅시다!  
+## 이제 프로젝트에 적용해봅시다!  
   
 항상 그렇듯 build.gradle에 종속성을 추가합니다.  
 
@@ -76,7 +76,7 @@ class LocationWorker(context: Context, workerParams: WorkerParameters)
 <br>
 Worker가 생성되고, 주기적으로 실행되는 작업 공간의 큐에 추가됩니다.  
 
-```
+```java
 fun createConstraints() = Constraints.Builder()
                         .setRequiredNetworkType(NetworkType.UNMETERED)  //와이파이 연결된 경우
                                                                           // 다른값(NOT_REQUIRED, CONNECTED, NOT_ROAMING, METERED)
@@ -110,9 +110,9 @@ fun startWork() {
 ```  
 
 <br>
-앞서 WorkerManager의 장점으로 소개 했던 체인기반의 작업에 대해서도 알아 보겠습니다.   
+앞서 WorkManager의 장점으로 소개 했던 체인기반의 작업에 대해서도 알아 보겠습니다.   
 
-```
+```java
 fun chainWorks(filter1: Work, filter2: Work, compress: Work, upload: Work) {
   WorkManager.getInstance()
     // Worker를 동시에 병렬로 실행합니다.
@@ -133,13 +133,14 @@ fun chainWorks(filter1: Work, filter2: Work, compress: Work, upload: Work) {
 
 
 <br>
-Worker는 우리가 원했던 작업구현 방식입니다. doWork() 메소드에서 필요한 작업을 구현하면 됩니다.  
+`Worker`는 우리가 원했던 작업구현 방식입니다. doWork() 메소드에서 필요한 작업을 구현하면 됩니다.  
 
-WorkRequest는 Worker의 arguments(입력된 데이터)와 constraints(네트워크 연결) 작업을 당담합니다.   
+`WorkRequest`는 Worker의 arguments(입력된 데이터)와 constraints(네트워크 연결) 작업을 당담합니다.   
 
-WorkManager는 WorkRequest를 큐에 담고 작업을 시작합니다. 이 작업을 스케쥴링 하기위해 Room 데이터베이스에 저장 하는 가장 좋은 방법을 사용합니다. 이 작업 결과는 LiveData를 통해 전송됩니다.  
+`WorkManager`는 WorkRequest를 큐에 담고 작업을 시작합니다. 이 작업을 스케쥴링 하기위해 `Room 데이터베이스`에 저장 하는 가장 좋은 방법을 사용합니다. 이 작업 결과는 LiveData를 통해 전송됩니다.  
 
-### 결론
+<br>
+## 결론
 WorkManager는 앱이 종료되거나 기기가 재시작되어도 실행되며, 비동기 작업을  구현하는 가장간단하면서 효과적인 솔루션입니다. 또한 제약사항을 통해 앱의 소비전력도 줄일 수 있습니다.  
 
 <br>
