@@ -12,8 +12,11 @@ comments: true
 ### 문제점
 사용자는 플레이스토어로 이동하여 수동으로 업데이트 버튼을 눌러야하며, 업데이트가 끝날때 까지 기다려야 합니다. 업데이트시간이 오래걸리게 되면 이탈하게 되어 업데이트하고 있다는 사실을 인지하지 못하고 업데이트된 후 앱을 재 실행하지 않게 될 수 도 있습니다. 또한 베타/알파 테스터나 앱 출시를 단계적으로 배포 하게 될경우 해당 사용자는 플레이스토어로 이동해도 최신버전의 앱으로 업데이트 받지 못할 수도 있습니다.  
 
+<br>
+
 ## AppUpdateManager
 구글은 이런 오래된 업데이트 처리방식에 대해 지원을 하기위해 AppUpdateManager를 라이브러리를 통해 추가하였습니다. AppUpdateManager를 이용하면 실제 업데이트 버전이 있다면 플레이스토어로 이동할 필요 없이 자연스러운 앱 업데이트를 처리 할 수 있습니다.  
+
 
 ### dependency
 build.gradle에 아래와 같이 종속성을 추가합니다.  
@@ -37,7 +40,7 @@ when(appUpdateInfo.updateAvailability()){
     }
 }
 ```
-
+<br>
 
 appUpdateInfo를 가져오기 위해 addOnCompleteListener를 통한 Callback구조를 suspendCoroutine를 이용해 suspend 함수로 간단하게 만들수 있습니다.  
 
@@ -54,6 +57,8 @@ suspend fun Task<AppUpdateInfo>.await(): AppUpdateInfo {
     }
 }
 ```
+
+<br>
 
 ### UpdateAvailability 4가지 상태
 * DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS : AppUpdateType.IMMEDIATE 타입을 통해 업데이트를 수행중인 경우
@@ -107,6 +112,8 @@ AppUpdateType.FLEXIBLE 타입을 사용하는 경우 사용자에게 좀 더 자
 |:---------------:|
 |<br> ![](/images/2019-06-24-AppUpdateManager/flexible.jpg){:.center-image} <br>|
 
+<br>
+
 다운로드 진행사항을 InstallStateUpdatedListener를 통해 Callback받을 수 있습니다. 다운로드 완료시 사용자에게 방해가 안될 정도의 UI를 표시하여 설치를 유도합니다. 여기서는 Snackbar를 이용하였습니다.   appUpdateManager.completeUpdate()를 호출하면 설치 UI로 넘어가게 되며 설치 완료시 자동으로 어플리케이션이 재실행됩니다.  
 
 
@@ -121,6 +128,8 @@ val listener = InstallStateUpdatedListener {
 }
 appUpdateManager.registerListener(listener)
 ```
+
+<br>
 
 사용가능한 새 버전이 있음에도 불구하고 특정 기기나 계정에서 새로운 버전을 사용할 수 없을 수 있습니다. 해당 업데이트가 실제 구글 플레이앱에서 제공되는지 여부를 확인 하는것이 중요합니다. appUpdateInfo.isUpdateTypeAllowed()를 이용하면 실제로 업데이트 가능한지 확인 할 수 있습니다.  
 
