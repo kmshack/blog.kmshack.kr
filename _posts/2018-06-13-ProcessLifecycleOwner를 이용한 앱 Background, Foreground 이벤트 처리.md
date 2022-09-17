@@ -1,5 +1,5 @@
 ---
-title: ProcessLifecycleOwner를 이용한 앱 B/F이벤트 처리
+title: ProcessLifecycleOwner를 이용한 앱 Background/Foreground이벤트 처리
 tags: [안드로이드, 아키텍쳐]
 layout: post
 comments: true
