@@ -5,8 +5,7 @@ permalink: /about/
 ---
 
 
-I've been working as an Android developer for 10 years, especially interested in ui/ux. Related development knowledge is being published on my blog, so if you are interested, you can visit. Sometimes I develop interesting applications as a hobby.
-
+I’ve been working as an Android developer for 14 years, especially interested in ui/ux. Related development knowledge is being published on my blog, so if you are interested, you can visit. Sometimes I develop interesting applications as a hobby.
 
   
 #### Contact me
